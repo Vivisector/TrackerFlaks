@@ -35,23 +35,25 @@ def edit_task(task_id):
         # Обновляем данные задачи
         task.title = request.form['title']
         task.description = request.form['description']
-        task.status = request.form.get('status', 'pending')
+        task.progress = int(request.form.get('progress', 0))  # Обновляем progress
         db.session.commit()
         return redirect(url_for('routes.index'))  # Возврат на главную страницу
     return render_template('edit_task.html', task=task)
 
 # Страница для завершения задачи
-@bp.route('/task/complete/<int:id>', methods=['POST'])
-def complete_task(id):
-    task = Task.query.get_or_404(id)
-    task.status = 'done'
+@bp.route('/task/<int:task_id>/complete', methods=['POST'])
+def complete_task(task_id):
+    task = Task.query.get_or_404(task_id)
+    task.progress = 100  # Устанавливаем прогресс на 100%
+    task.status = 'done'  # Устанавливаем статус как завершённый
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('routes.index'))
+
 
 # Страница для удаления задачи
-@bp.route('/task/delete/<int:id>', methods=['POST'])
+@bp.route('/task/<int:id>/delete', methods=['POST'])
 def delete_task(id):
     task = Task.query.get_or_404(id)
     db.session.delete(task)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('routes.index'))
