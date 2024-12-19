@@ -9,6 +9,7 @@ class Task(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     status = db.Column(db.String(20), default='pending')  # pending, done
+    progress = db.Column(db.Integer, nullable=True, default=0)  # Добавьте поле progress
 
     def __repr__(self):
         return f'<Task {self.title}>'

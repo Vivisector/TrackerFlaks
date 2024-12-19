@@ -29,18 +29,18 @@
                     <td>{{ task.description }}</td>
                     <td>{{ task.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
                     <td>{{ task.updated_at.strftime("%Y-%m-%d %H:%M") }}</td>
-                    <td>{{ task.status }}</td>
+                    <!-- <td>{{ task.status }}</td> -->
                     <td>
-                        <a href="{{ url_for('routes.edit_task', task_id=task.id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ url_for('routes.edit_task', task_id=task.id) }}" class="btn btn-primary">Editt</a>
                         <form method="POST" action="/delete/{{ task.id }}" style="display: inline;">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Удалить</button>
                         </form>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-        <a href="/create" class="btn btn-success">Create New Task</a>
+        <a href="{{ url_for('routes.create_task') }}" class="btn btn-primary">Новая задача</a>
     </div>
 </body>
 </html>
