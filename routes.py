@@ -4,10 +4,12 @@ from models import Task
 
 bp = Blueprint('routes', __name__)
 
+
 @bp.route('/')
 def index():
     tasks = Task.query.all()  # Получаем все задачи
     return render_template('index.html', tasks=tasks)
+
 
 # Страница для создания новой задачи
 @bp.route('/task/new', methods=['GET', 'POST'])
@@ -27,6 +29,7 @@ def create_task():
         return redirect(url_for('routes.index'))  # Возврат на главную страницу
     return render_template('create_task.html')
 
+
 # Страница для редактирования задачи
 @bp.route('/task/<int:task_id>/edit', methods=['GET', 'POST'])
 def edit_task(task_id):
@@ -41,6 +44,7 @@ def edit_task(task_id):
         db.session.commit()
         return redirect(url_for('routes.index'))  # Возврат на главную страницу
     return render_template('edit_task.html', task=task)
+
 
 # Страница для завершения задачи
 @bp.route('/task/<int:task_id>/complete', methods=['POST'])

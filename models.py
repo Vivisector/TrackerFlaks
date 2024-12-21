@@ -1,6 +1,7 @@
 from datetime import datetime
 from extensions import db
 
+
 class Task(db.Model):
     __tablename__ = 'tasks_task'  # Укажите имя таблицы явно
     id = db.Column(db.Integer, primary_key=True)

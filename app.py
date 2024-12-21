@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from models import Task
 from extensions import db
 
+
 def create_app():
     # Создаем приложение Flask
     app = Flask(__name__)
