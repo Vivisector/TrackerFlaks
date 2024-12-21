@@ -36,6 +36,8 @@ def edit_task(task_id):
         task.title = request.form['title']
         task.description = request.form['description']
         task.progress = int(request.form.get('progress', 0))  # Обновляем progress
+        task.status = request.form.get('status', 'in progress')  # По умолчанию: "in progress"
+
         db.session.commit()
         return redirect(url_for('routes.index'))  # Возврат на главную страницу
     return render_template('edit_task.html', task=task)

@@ -32,14 +32,14 @@
         {% for task in tasks %}
         <tr>
             <td>{{ loop.index }}</td>
-            <!-- Название задачи -->
+            <!-- столбец с названием задачи -->
             <td>
                 <a href="{{ url_for('routes.edit_task', task_id=task.id) }}"
                    class="{% if task.status == 'done' %}completed{% endif %}">
                     {{ task.title }}
                 </a>
             </td>
-            <!-- Описание задачи -->
+            <!-- столбец с описанием задачи -->
             <td>
                 <a href="{{ url_for('routes.edit_task', task_id=task.id) }}"
                    class="{% if task.status == 'done' %}completed{% endif %}">
